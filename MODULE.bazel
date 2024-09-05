@@ -1,0 +1,28 @@
+bazel_dep(name = "contrib_rules_jvm", version = "0.24.0")
+
+bazel_dep(
+    name = "rules_jvm_external",
+    version = "6.0",
+)
+bazel_dep(
+    name = "dir",
+    version = "0.0",
+)
+local_path_override(
+    module_name = "dir",
+    path = "dir",
+)
+maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
+maven.install(
+    name = "maven",
+    artifacts = [
+        "junit:junit:4.13.2",
+    ],
+    fetch_sources = True,
+    lock_file = "//:maven_install.json",
+)
+use_repo(
+    maven,
+    "maven",
+    "unpinned_maven",
+)

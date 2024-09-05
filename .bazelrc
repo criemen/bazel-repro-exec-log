@@ -1,0 +1,9 @@
+common --experimental_execution_log_compact_file=bazel_compact_execution_log
+build --incompatible_strict_action_env
+test --test_output all
+# by default using bazel test and ... targets builds everything. This will only build the tests
+test --build_tests_only
+build --java_language_version=17
+build --tool_java_language_version=17
+build --tool_java_runtime_version=remotejdk_17
+build --java_runtime_version=remotejdk_17
